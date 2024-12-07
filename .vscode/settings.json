@@ -1,0 +1,9 @@
+{
+	"files.associations": {
+		"*.html": "html",
+		"*.js": "javascript",
+		"*.css": "css",
+		"*.php": "php",
+		"get_next_line.h": "c"
+	}
+}
