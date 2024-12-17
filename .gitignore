@@ -1,2 +1,4 @@
 .pdf
 /*.dSYM
+.exe
+.out
