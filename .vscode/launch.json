@@ -5,36 +5,30 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "type": "lldb",
-      "request": "attach",
-      "name": "Attach",
-      "program": "${workspaceFolder}/main.exe"
+      "name": "Launch Program (LLDB)",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/main",
+      "args": [],
+      "stopAtEntry": false,
+      "cwd": "${fileDirname}",
+      "environment": [],
+      "externalConsole": false,
+      "MIMode": "lldb",
+      "preLaunchTask": "C/C++: clang build for OSX"
     },
     {
-      "name": "Debug C Program Windows",
-      "type": "cppvsdbg",
+      "name": "Launch Program (GDB)",
+      "type": "cppdbg",
       "request": "launch",
-      "program": "${workspaceFolder}/a.exe", // Path to your compiled executable
+      "program": "${workspaceFolder}/main.exe",
       "args": [],
-      "stopAtEntry": false, // Set to true if you want to break at the entry point
-      "cwd": "${workspaceFolder}",
+      "stopAtEntry": false,
+      "cwd": "${fileDirname}",
       "environment": [],
-      "externalConsole": false, // Set to true if you want an external terminal for input/output
-      "MIMode": "gdb", // For MinGW (optional if you're using MSVC)
-      "setupCommands": [
-        {
-          "description": "Enable pretty-printing for gdb",
-          "text": "-enable-pretty-printing",
-          "ignoreFailures": true
-        }
-      ],
-      "preLaunchTask": "build", // Optional: If you have a task to build your program before debugging
-      "miDebuggerPath": "C:/mingw/bin/gdb.exe", // Path to gdb if using MinGW
-      "logging": {
-        "moduleLoad": false,
-        "engineLogging": false,
-        "trace": false
-      }
+      "externalConsole": false,
+      "MIMode": "lldb",
+      "preLaunchTask": "C/C++: clang build for windows"
     }
   ]
 }

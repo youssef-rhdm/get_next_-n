@@ -6,7 +6,7 @@
 /*   By: yrhandou <yrhandou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 13:59:30 by yrhandou          #+#    #+#             */
-/*   Updated: 2024/12/17 11:41:23 by yrhandou         ###   ########.fr       */
+/*   Updated: 2024/12/17 22:43:53 by yrhandou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ char *ft_strchr(const char *s, int c)
 	int i;
 
 	i = 0;
+	if (!s)
+		return NULL;
 	while (s[i] != '\0')
 	{
 		if (s[i] == (char)c)
