@@ -6,7 +6,7 @@
 /*   By: yrhandou <yrhandou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 13:59:30 by yrhandou          #+#    #+#             */
-/*   Updated: 2024/12/07 17:51:17 by yrhandou         ###   ########.fr       */
+/*   Updated: 2024/12/17 11:41:23 by yrhandou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,28 +21,61 @@ size_t ft_strlen(const char *s)
 		i++;
 	return (i);
 }
-
-char *ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_strjoin(const char *str1, const char *str2)
 {
-	size_t i;
-	size_t length;
-	char *str;
+	char	*str;
+	char	*temp;
 
-	if (!s)
-		return (NULL);
-	length = ft_strlen(s);
-	if (length <= start)
-		len = 0;
-	else if (len > length - start)
-		len = length - start;
-	str = malloc(sizeof(char) * len + 1);
+	if (!str1 && !str2)
+		return NULL;
+	if (!str1)
+		return ft_strdup(str2);
+	if (!str2)
+		return ft_strdup(str1);
+	str = malloc(sizeof(char) * (ft_strlen(str1) + ft_strlen(str2) + 1));
 	if (!str)
-		return (NULL);
+		return NULL;
+	temp = str;
+	while (*str1)
+		*temp++ = *str1++;
+	while (*str2)
+		*temp++ = *str2++;
+	*temp = '\0';
+	return str;
+}
+char	*ft_strdup(const char *str)
+{
+	char	*dup;
+	size_t	i;
+	size_t	len;
+
 	i = 0;
-	while (i < len && s[start])
+	if (!str)
+		return NULL;
+	len = ft_strlen(str);
+	dup = malloc(sizeof(char) * len + 1);
+	if (!dup)
+		return NULL;
+	while (len > i)
 	{
-		str[i++] = s[start++];
+		dup[i] = str[i];
+		i++;
 	}
-	str[i] = '\0';
-	return (str);
+	dup[i] = '\0';
+	return dup;
+}
+char *ft_strchr(const char *s, int c)
+{
+	int i;
+
+	i = 0;
+	while (s[i] != '\0')
+	{
+		if (s[i] == (char)c)
+			return ((char *)(&s[i]));
+		i++;
+	}
+	if (s[i] == (char)c)
+		return ((char *)(&s[i]));
+	return (NULL);
 }
