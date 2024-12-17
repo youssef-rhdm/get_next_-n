@@ -6,7 +6,7 @@
 /*   By: yrhandou <yrhandou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 13:59:25 by yrhandou          #+#    #+#             */
-/*   Updated: 2024/12/17 10:33:57 by yrhandou         ###   ########.fr       */
+/*   Updated: 2024/12/17 22:19:27 by yrhandou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #include <unistd.h>
 #include <stdlib.h>
+#include <libc.h>
 
 #ifndef BUFFER_SIZE
 	#define BUFFER_SIZE 1
