@@ -4,6 +4,8 @@
 		"*.js": "javascript",
 		"*.css": "css",
 		"*.php": "php",
-		"get_next_line.h": "c"
-	}
+		"get_next_line.h": "c",
+		"unistd.h": "c"
+	},
+	"C_Cpp.default.compilerPath": "c:\\MinGW\\include\\unistd.h"
 }

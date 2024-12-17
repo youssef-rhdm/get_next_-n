@@ -1,5 +1,6 @@
 #include "get_next_line.h"
-#include <libc.h>
+#include <stdio.h>
+#include <fcntl.h>
 int main(int argc, char const *argv[])
 {
 	int fd = open("file.txt",O_RDONLY);

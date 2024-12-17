@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <libc.h>
 
 char *get_line(const char *str)
 {
