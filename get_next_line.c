@@ -6,56 +6,54 @@
 /*   By: yrhandou <yrhandou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 13:59:28 by yrhandou          #+#    #+#             */
-/*   Updated: 2024/12/17 22:41:42 by yrhandou         ###   ########.fr       */
+/*   Updated: 2024/12/18 09:01:06 by yrhandou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static char *get_one_line(const char *str)
+static char	*get_one_line(const char *str)
 {
-	char *line;
-	int i;
+	char	*line;
+	int		i;
 
 	if (!str || str[0] == '\0')
-		return NULL;
+		return (NULL);
 	i = 0;
 	line = malloc(sizeof(char) * ft_strlen(str) + 1);
 	if (!line)
-		return NULL;
+		return (NULL);
 	while (str[i] != '\n')
 	{
 		line[i] = str[i];
 		i++;
 	}
 	line[i] = '\0';
-	return line;
+	return (line);
 }
 
-static char *leftovers(const char *s)
+static char	*leftovers(const char *s)
 {
-	char *start;
+	char	*start;
 
 	if (!s || s[0] == '\0')
 		return (NULL);
 	start = ft_strchr(s, '\n') + 1;
 	free((void *)s);
 	if (*start == '\0')
-		return NULL;
-	return start;
+		return (NULL);
+	return (start);
 }
 
-char *get_next_line(int fd)
+static char	*read_buffer(int fd, char *bag)
 {
-	static char *bag;
-	char *buffer;
-	int byte_count;
-	char *line;
-	char *temp;
+	int		byte_count;
+	char	*temp;
+	char	*buffer;
 
-	buffer = malloc(BUFFER_SIZE +1);
-	if (fd < 0 || fd > INT_MAX || read(fd, 0, 0) == -1 || BUFFER_SIZE <= 0||!buffer)
-		return NULL;
+	buffer = malloc(BUFFER_SIZE + 1);
+	if (!buffer)
+		return (NULL);
 	byte_count = 1;
 	while (byte_count != 0 && ft_strchr(bag, '\n') == NULL)
 	{
@@ -65,7 +63,18 @@ char *get_next_line(int fd)
 		bag = ft_strjoin(bag, buffer);
 		free(temp);
 	}
+	return (bag);
+}
+
+char	*get_next_line(int fd)
+{
+	static char	*bag;
+	char		*line;
+
+	bag = 0;
+	if (fd < 0 || fd > INT32_MAX || read(fd, 0, 0) == -1 || BUFFER_SIZE <= 0)
+		return (NULL);
+	bag = read_buffer(fd, bag);
 	line = get_one_line(bag);
-	bag = leftovers(bag);
-	return line;
+	return (bag = leftovers(bag), line);
 }
