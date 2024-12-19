@@ -6,11 +6,24 @@
 /*   By: yrhandou <yrhandou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 13:59:28 by yrhandou          #+#    #+#             */
-/*   Updated: 2024/12/18 09:01:06 by yrhandou         ###   ########.fr       */
+/*   Updated: 2024/12/19 13:49:17 by yrhandou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+static char	*leftovers(const char *s)
+{
+	char	*start;
+
+	if (!s || s[0] == '\0')
+		return (NULL);
+	start = ft_strchr(s, '\n') + 1;
+	free((void *)s);
+	if (*start == '\0')
+		return (NULL);
+	return (start);
+}
 
 static char	*get_one_line(const char *str)
 {
@@ -28,21 +41,8 @@ static char	*get_one_line(const char *str)
 		line[i] = str[i];
 		i++;
 	}
-	line[i] = '\0';
+	line[i] = '\n';
 	return (line);
-}
-
-static char	*leftovers(const char *s)
-{
-	char	*start;
-
-	if (!s || s[0] == '\0')
-		return (NULL);
-	start = ft_strchr(s, '\n') + 1;
-	free((void *)s);
-	if (*start == '\0')
-		return (NULL);
-	return (start);
 }
 
 static char	*read_buffer(int fd, char *bag)
@@ -51,7 +51,8 @@ static char	*read_buffer(int fd, char *bag)
 	char	*temp;
 	char	*buffer;
 
-	buffer = malloc(BUFFER_SIZE + 1);
+	temp = 0;
+	buffer = malloc(BUFFER_SIZE + 1 );//
 	if (!buffer)
 		return (NULL);
 	byte_count = 1;
@@ -63,18 +64,20 @@ static char	*read_buffer(int fd, char *bag)
 		bag = ft_strjoin(bag, buffer);
 		free(temp);
 	}
+		free(buffer);
+	// printf("{%s}", bag);
 	return (bag);
 }
 
 char	*get_next_line(int fd)
 {
-	static char	*bag;
+	static char	*bag = NULL;
 	char		*line;
 
-	bag = 0;
-	if (fd < 0 || fd > INT32_MAX || read(fd, 0, 0) == -1 || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE > 2147483647 || read(fd, 0, 0) == -1 || BUFFER_SIZE <= 0)
 		return (NULL);
 	bag = read_buffer(fd, bag);
 	line = get_one_line(bag);
-	return (bag = leftovers(bag), line);
+	bag = leftovers(bag);
+	return (line);
 }

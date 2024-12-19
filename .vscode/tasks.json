@@ -11,7 +11,7 @@
                 "${workspaceFolder}/get_next_line.c",
                 "${workspaceFolder}/get_next_line_utils.c",
                 "-o",
-                "${fileDirname}/${fileBasenameNoExtension}"
+                "${fileDirname}/main"
             ],
             "options": {
                 "cwd": "${fileDirname}"
@@ -35,7 +35,7 @@
                 "get_next_line.c",
                 "get_next_line_utils.c",
                 "-o",
-                "${fileDirname}\\${fileBasenameNoExtension}.exe"
+                "${fileDirname}\\main.exe"
             ],
             "options": {
                 "cwd": "${fileDirname}"
@@ -46,7 +46,6 @@
             "group": "build",
             "detail": "compiler: C:\\MinGW\\bin\\gcc.exe"
         },
-      
     ],
     "version": "2.0.0"
 }
