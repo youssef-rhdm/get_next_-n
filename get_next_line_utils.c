@@ -6,7 +6,7 @@
 /*   By: yrhandou <yrhandou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 13:59:30 by yrhandou          #+#    #+#             */
-/*   Updated: 2024/12/19 12:15:35 by yrhandou         ###   ########.fr       */
+/*   Updated: 2024/12/21 15:23:19 by yrhandou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,4 +83,28 @@ char	*ft_strchr(const char *s, int c)
 	if (s[i] == (char)c)
 		return ((char *)(&s[i]));
 	return (NULL);
+}
+char *ft_substr(char const *s, unsigned int start, size_t len)
+{
+	size_t i;
+	size_t length;
+	char *str;
+
+	if (!s)
+		return (NULL);
+	length = ft_strlen(s);
+	if (length <= start)
+		len = 0;
+	else if (len > length - start)
+		len = length - start;
+	str = malloc(sizeof(char) * len + 1);
+	if (!str)
+		return (NULL);
+	i = 0;
+	while (i < len && s[start])
+	{
+		str[i++] = s[start++];
+	}
+	str[i] = '\0';
+	return (str);
 }
